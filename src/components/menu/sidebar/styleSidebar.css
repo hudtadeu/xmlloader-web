@@ -41,6 +41,7 @@
 
 .search-container svg {
   color: #999;
+  font-size: 12px;
 }
 
 .account-summary {
@@ -52,7 +53,7 @@
 
 .account-summary h3 {
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 5px; 
 }
 
 .account-summary p {
@@ -66,7 +67,6 @@
 
 .chart-item {
   background-color: #fff;
-  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
@@ -77,7 +77,7 @@
 }
 
 .chart-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.03);
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -88,7 +88,7 @@
   left: 0;
   bottom: 0;
   width: 5px;
-  background-color: #007bff;
+  background-color: #0098c9;
   transition: opacity 0.1s ease;
   opacity: 0;
 }
@@ -121,6 +121,7 @@
 .status-icon {
   color: #28a745;
   margin-right: 5px;
+  font-size: 13px;
 }
 
 .last-activity {
@@ -133,8 +134,8 @@
   margin-left: auto;
   background-color: #28a745;
   color: #fff;
-  padding: 3px 8px;
-  border-radius: 5px;
+  padding: 3px 7px;
+  border-radius: 6px;
   font-size: 10px;
 }
 

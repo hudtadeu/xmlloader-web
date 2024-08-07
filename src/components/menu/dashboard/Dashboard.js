@@ -1,51 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Chart from 'react-apexcharts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import Sidebar from '../sidebar/Sidebar';  // Certifique-se de que o caminho está correto
+import Sidebar from '../sidebar/Sidebar'; // Certifique-se de que o caminho está correto
 import './styleDashboard.css';
 
 const Dashboard = () => {
   const [selectedChart, setSelectedChart] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleDataPointClick = (event) => {
-      const target = event.target;
-      const chartContainer = target.closest('.chart-container');
-
-      if (chartContainer) {
-        const chartIndex = chartContainer.getAttribute('data-chart-index');
-        if (target && target.getAttribute('index')) {
-          const dataPointIndex = target.getAttribute('j');
-          if (chartIndex === '0') {
-            navigate(`/xml-recebidos/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '1') {
-            navigate(`/ocorrencias-negocio/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '2') {
-            navigate(`/auditoria/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '3') {
-            navigate(`/ocorrencias-tipo-doc-fiscais/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '4') {
-            navigate(`/ocorrencias-linhas-produtos/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '5') {
-            navigate(`/fluxo-doc-fiscais-estabelecimento/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '6') {
-            navigate(`/controle-chegada-empresa/${chartIndex}/${dataPointIndex}`);
-          } else if (chartIndex === '7') {
-            navigate(`/documentos-atualizados-dia/${chartIndex}/${dataPointIndex}`);
-          }
-        }
-      }
-    };
-
-    document.addEventListener('click', handleDataPointClick);
-
-    return () => {
-      document.removeEventListener('click', handleDataPointClick);
-    };
-  }, [navigate]);
 
   const commonOptions = {
     chart: {
@@ -222,111 +181,26 @@ const Dashboard = () => {
     },
   ];
 
-  const handleChartClick = (chartData) => {
-    setSelectedChart(chartData);
-  };
-
-  const closeModal = () => {
-    setSelectedChart(null);
-  };
-
-  const handleModalClick = (e) => {
-    if (e.target.classList.contains('modal')) {
-      closeModal();
-    }
+  const handleChartClick = (chartIndex) => {
+    setSelectedChart(data[chartIndex]);
   };
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar onSelectChart={handleChartClick} />
       <div id="dashboard">
-        {data.map((chartData, index) => (
-          <div key={index} className="chart-container" data-chart-index={index}>
+        {selectedChart ? (
+          <div key={selectedChart.title} className="chart-container">
             <div className="chart-header">
-              <h2 className="chart-title">{chartData.title}</h2>
-              <div className="chart-menu" onClick={() => handleChartClick({ ...chartData, index })}>
-                <FontAwesomeIcon icon={faEllipsisH} className="chart-menu-icon" title="Filtrar Gráfico" />
-              </div>
+              <h2 className="chart-title">{selectedChart.title}</h2>
             </div>
             <div className="chart-wrapper">
-              <Chart options={chartData.options} series={chartData.series} type="donut" height="296" />
+              <Chart options={selectedChart.options} series={selectedChart.series} type="donut" height="400" />
             </div>
           </div>
-        ))}
-        {selectedChart && (
-          <div className="modal" onClick={handleModalClick}>
-            <div className="modal-content">
-              <button className="modal-close" onClick={closeModal}>
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-              <h2 className="chart-title-modal">{selectedChart.title}</h2>
-              <div className="modal-body">
-                <div className="filters">
-                  <div className="filter">
-                    <label>Estabelecimento:</label>
-                    <input type="text" />
-                  </div>
-                  <div className="filter">
-                    <label>Código Fornecedor:</label>
-                    <input type="text" />
-                  </div>
-                  <div className="filter">
-                    <label>Tipo Documento Fiscal:</label>
-                    <select>
-                      <option value="">Selecione</option>
-                      <option value="nfe">NFe</option>
-                      <option value="nfs">Nfs</option>
-                      <option value="cte">CTe</option>
-                    </select>
-                  </div>
-                  <div className="filter">
-                    <label>Período Inicial:</label>
-                    <input type="date" />
-                  </div>
-                  <div className="filter">
-                    <label>Período Final:</label>
-                    <input type="date" />
-                  </div>
-                  <div className="filter">
-                    <label>Por Departamento:</label>
-                    <select>
-                      <option value="suprimento">Suprimento</option>
-                      <option value="fiscal">Fiscal</option>
-                      <option value="producao">Produção</option>
-                      <option value="almoxarifado">Almoxarifado</option>
-                    </select>
-                  </div>
-                  <div className="filter">
-                    <label>Por Tipo de Erro:</label>
-                    <select>
-                      <option value="suprimento">Suprimento</option>
-                      <option value="fiscal">Fiscal</option>
-                      <option value="producao">Produção</option>
-                      <option value="almoxarifado">Almoxarifado</option>
-                      <option value="pcp">PCP</option>
-                      <option value="qualidade">Qualidade</option>
-                    </select>
-                  </div>
-                  <div className="filter">
-                    <label>Situação Documento Fiscal:</label>
-                    <select>
-                      <option value="pendente">Pendente</option>
-                      <option value="atualizado">Atualizado</option>
-                      <option value="cancelado">Cancelado</option>
-                    </select>
-                  </div>
-                  <div className="filter">
-                    <label>Localização Veículo:</label>
-                    <input type="text" />
-                  </div>
-                  <div className="filter">
-                    <label>Período de Tempo Documento Parado:</label>
-                    <input type="text" />
-                  </div>
-                </div>
-                <button className="button-save">Salvar</button>
-              </div>
-            </div>
+        ) : (
+          <div className="no-chart">
+            <p>Selecione um gráfico no menu ao lado para visualizar.</p>
           </div>
         )}
       </div>
