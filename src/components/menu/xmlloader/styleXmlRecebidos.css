@@ -1,0 +1,190 @@
+.page-container {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100vh; /* Adjust as needed */
+}
+
+.comparative-parameters h1 {
+  font-size: 25px;
+  padding-bottom: 10px;
+  margin-top: 5px;
+}
+
+.header-comparative {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #0098c9;
+}
+
+.btn-back {
+  background-color: #fff;
+  border: 1px solid #0098c9;
+  color: #0098c9;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: -5px;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  background-color:#2687E9;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-back svg {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.btn-new {
+  background-color: #2687E9;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.btn-new:hover {
+  background-color: #0056b3;
+}
+
+.comparative-table {
+  width: 100%;
+  min-width: 3500px; 
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 6px;
+  transition: width 0.3s ease;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.comparative-table-container {
+  overflow-x: auto;
+  max-width: 82vw; 
+}
+
+.comparative-table tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.comparative-table tr:nth-child(odd) {
+  background-color: #f5f6f7;
+}
+
+.comparative-table th,
+.comparative-table td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.comparative-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparative-table td {
+  padding: 8px;
+  margin-left: 5px;
+}
+
+.comparative-table th {
+  background-color: #00274D;
+  color: #fff;
+  overflow-x: auto;
+  max-width: 82vw; 
+  padding: 10px;
+  font-size: 10px;
+}
+
+.comparative-table th:nth-child(n+11):nth-child(-n+32) {
+  background-color: #003366;
+}
+
+.comparative-table th:nth-child(n+33) {
+  background-color: #004080;
+}
+
+.comparative-table td {
+  font-size: 1rem;
+  color: #666666;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.comparative-table .fa-check {
+  color: green;
+}
+
+.comparative-table .icon-minus {
+  color: red;
+}
+
+.table-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.config-icon {
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.btn-details {
+  background-color: #2687E9;
+  color: white;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.btn-details:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .comparative-table th, .comparative-table td {
+    font-size: 8px; 
+    padding: 4px; 
+  }
+}
+
+.sidebar-closed .comparative-table-container {
+  max-width: 91vw; 
+}
+
+.comparative-table .title-table th {
+  background-color: #004080;
+}
+
+.comparative-table .title-table th:nth-child(1) {
+  background-color: #00274D;
+}
+
+.comparative-table .title-table th:nth-child(2) {
+  background-color: #003366;
+}
+
+.comparative-table .title-table th:nth-child(33) {
+  background-color: #00274D;
+}
+

@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+  
+  body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #ebecee;
+  }
+  
+  .app-container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .content {
+  }
+  
+  .main {
+    padding: 20px;
+    position: fixed;
+    z-index: 1;
+    margin-left: 80px;
+  }
+
+  #sidebar.open-sidebar {
+    width: 210px; 
+  }
+  
+  #sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #00274D;
+    color:  #fff;
+    height: 100vh;
+    position: relative;
+    transition: all .5s;
+    min-width: 80px;
+    z-index: 2;
+  }
+
+  #sidebar_content {
+    flex-grow: 1;
+    padding: 12px;
+    overflow-y: auto;
+  }
+  
+  #sidebar_content {
+    padding: 12px;
+  }
+  
+  #logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 2px;
+  }
+  
+  #logo img {
+    height: 30px; 
+    margin-bottom: -5px;
+    transition: width .5s;
+  }
+  
+  #conti_transparente {
+    width: 30px; 
+    margin-bottom: 12px;
+    transition: height .1s;
+  }
+  
+  #side_items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+  }
+  
+  .side-item {
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 2x;
+  }
+  
+  .side-item a:hover {
+    background-color: #fff;
+    color: #00274D;
+    transform: translateX(10px);
+  }
+  
+  .side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s ease;
+    padding: 3px; 
+    border-radius: 5px;
+  }
+  
+  .side-item a i, .submenu-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+  
+  #logout {
+    border-top: 1px solid #e3e9f7;
+    padding: 30px;
+    margin-top: -30px;
+  }
+  
+  #logout_btn {
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px;
+    text-align: start;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    font-weight: 550;
+  }
+  
+  #logout_btn:hover {
+    color: #00274D;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  #open_btn {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: #fff;
+    color: #00274D;
+    border-radius: 100%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #open_btn_icon {
+    transition: transform .3s ease;
+    padding: 3px;
+    font-size: 12px;
+  }
+  
+  .open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+  }
+  
+  .item-description {
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    transition: width .6s;
+    height: 0px;
+  }
+  
+  #sidebar.open-sidebar {
+    min-width: 10%;
+  }
+  
+  #sidebar.open-sidebar .item-description {
+    width: 145px;
+    height: 15px;
+  }
+  
+  #sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  #sidebar.open-sidebar #conti_transparente {
+    width: 145px;
+    height: 80px; 
+    margin-bottom: -8px;
+    margin-top: -17px;
+  }
+  
+  .sidebar-closed #dashboard {
+    grid-template-columns: repeat(4, minmax(335px, 1fr));
+  }
+  
+  .submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+    font-size: 11px;
+  }
+  
+  .submenu-item {
+    transition: all 0.3s ease;
+  }
+  
+  .submenu-item a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-icon {
+    font-size: 14px; 
+  }
+  
+  .submenu-item a:hover {
+    background-color: #fff;
+    color: #00274D;
+  }
+  
+  .submenu-icon {
+    margin-left: auto;
+    font-size: 12px;
+  }
+  
+  #sidebar:not(.open-sidebar) .submenu-icon {
+    display: none;
+  }
+  
+  .fixed-logout-btn {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    text-align: center;
+  }
