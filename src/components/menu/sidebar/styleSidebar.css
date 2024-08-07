@@ -9,11 +9,13 @@
 
 .sidebar {
   width: 300px;
-  background-color: #fff;
+  background-color: #ebecee;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ddd;
+  overflow-y: auto;
 }
 
 .sidebar-header {
@@ -22,17 +24,13 @@
   margin-bottom: 20px;
 }
 
-.sidebar-header h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
 .search-container {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 5px;
+  background-color: #fff;
 }
 
 .search-container input {
@@ -53,67 +51,91 @@
 }
 
 .account-summary h3 {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
 .account-summary p {
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
 .company-list {
   flex: 1;
-  overflow-y: auto;
 }
 
-.company-item {
+.chart-item {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.chart-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chart-item::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #007bff;
+  transition: opacity 0.1s ease;
+  opacity: 0;
+}
+
+.chart-item:hover::before {
+  opacity: 1;
+}
+
+.chart-header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.company-item.success {
-  border-left: 5px solid #28a745;
-}
-
-.company-item.error {
-  border-left: 5px solid #dc3545;
-}
-
-.company-status {
-  margin-right: 10px;
-}
-
-.company-status span {
-  display: inline-block;
-  background-color: #ddd;
-  padding: 3px 8px;
-  border-radius: 5px;
+.chart-header h4 {
   font-size: 12px;
-}
-
-.company-status span.success {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.company-status span.error {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.company-info h4 {
-  font-size: 14px;
   margin-bottom: 5px;
 }
 
-.company-info p {
+.chart-menu-icon {
+  cursor: pointer;
+}
+
+.chart-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.status-icon {
+  color: #28a745;
+  margin-right: 5px;
+}
+
+.last-activity {
   font-size: 12px;
   color: #666;
+  font-weight: 500;
+}
+
+.time {
+  margin-left: auto;
+  background-color: #28a745;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 10px;
 }
 
 .no-more-companies {

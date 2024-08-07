@@ -1,71 +1,95 @@
 import React from 'react';
 import './styleSidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   const data = [
     {
-      status: 'success',
+      title: "XML's Recebidos a (x Dias)",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
       time: '20 MIN',
-      name: 'C.JR. - CONSTRUTORA LTDA.',
-      location: 'SP',
-      certificate: 'Associado',
-      consultation: 'Automática',
+      timeColor: '#28a745'
     },
     {
-      status: 'error',
-      time: 'Nunca consultado',
-      name: 'ELEICAO 2012',
-      location: 'AM',
-      certificate: 'Não Associado',
+      title: "Ocorrências por Área de Negócio",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: 'Sem atividade',
+      timeColor: '#dc3545'
     },
     {
-      status: 'error',
-      time: 'Nunca consultado',
-      name: 'Empresa 3.1',
-      location: 'AP',
-      certificate: 'Não Associado',
-    },
-    {
-      status: 'success',
+      title: "Auditoria",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
       time: '1 HORA',
-      name: 'Filial C.Jr Teste',
-      location: 'SP',
-      certificate: 'Associado',
-      consultation: 'Automática',
+      timeColor: '#28a745'
     },
     {
-      status: 'error',
-      time: 'Nunca consultado',
-      name: 'XPTO',
-      location: 'AL',
-      certificate: 'Não Associado',
+      title: "Ocorrências por Tipo de Doc. Fiscais",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: '2 HORAS',
+      timeColor: '#28a745'
     },
+    {
+      title: "Ocorrências por Linhas de Produtos",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: 'Sem atividade',
+      timeColor: '#dc3545'
+    },
+    {
+      title: "Fluxo Doc. Fiscais por Estabelecimento",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: '25 MIN',
+      timeColor: '#28a745'
+    },
+    {
+      title: "Controle Chegada na Empresa",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: '30 MIN',
+      timeColor: '#28a745'
+    },
+    {
+      title: "Documentos Atualizados no Dia",
+      statusIcon: faCheckCircle,
+      lastActivity: "Última atividade:",
+      time: '10 MIN',
+      timeColor: '#28a745'
+    },
+
+    // Adicione mais dados conforme necessário
   ];
 
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
         <div className="search-container">
-          <input type="text" placeholder="Buscar Empresa" />
+          <input type="text" placeholder="Buscar atividades" />
           <FontAwesomeIcon icon={faSearch} />
         </div>
       </div>
       <div className="account-summary">
-        <h3>Resumo da conta</h3>
+        <h3>Resumo dos Gráficos</h3>
+        <p>Compilado de todos os Gráficos</p>
       </div>
       <div className="company-list">
         {data.map((item, index) => (
-          <div key={index} className={`company-item ${item.status}`}>
-            <div className="company-status">
-              <span>{item.time}</span>
+          <div key={index} className="chart-item">
+            <div className="chart-info">
+              <FontAwesomeIcon icon={item.statusIcon} className="status-icon" />
+              <span className="last-activity">{item.lastActivity}</span>
+              <div className="time" style={{ backgroundColor: item.timeColor }}>
+                {item.time}
+              </div>
             </div>
-            <div className="company-info">
-              <h4>{item.name}</h4>
-              <p>{item.location}</p>
-              <p>Certificado: {item.certificate}</p>
-              {item.consultation && <p>Consulta: {item.consultation}</p>}
+            <div className="chart-header">
+              <h4>{item.title}</h4>
+              <FontAwesomeIcon icon={faEllipsisH} className="chart-menu-icon" />
             </div>
           </div>
         ))}
