@@ -16,7 +16,7 @@
   flex-direction: column;
   border: 1px solid #ddd;
   overflow-y: auto;
-  max-height: 100vh; /* Ensures the sidebar doesn't exceed the viewport height */
+  max-height: 100vh;
 }
 
 .sidebar-header {
@@ -107,6 +107,7 @@
 .chart-header h4 {
   font-size: 12px;
   margin-bottom: 5px;
+  margin-top: 3px;
 }
 
 .chart-menu-icon {

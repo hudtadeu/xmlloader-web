@@ -88,8 +88,8 @@ const Sidebar = ({ onSelectChart }) => {
         </div>
       </div>
       <div className="account-summary">
-        <h3>Resumo dos Gráficos</h3>
-        <p>Compilado de todos os Gráficos</p>
+        <h3>Resumo de Atividades</h3>
+        <p>Compilado com os Gráficos</p>
       </div>
       <div className="company-list">
         {data.map((item, index) => (
@@ -103,7 +103,6 @@ const Sidebar = ({ onSelectChart }) => {
             </div>
             <div className="chart-header">
               <h4>{item.title}</h4>
-              <FontAwesomeIcon icon={faEllipsisH} className="chart-menu-icon" />
             </div>
           </div>
         ))}
