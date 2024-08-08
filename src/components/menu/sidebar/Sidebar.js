@@ -93,7 +93,7 @@ const Sidebar = ({ onSelectChart }) => {
       </div>
       <div className="company-list">
         {data.map((item, index) => (
-          <div key={index} className="chart-item" onClick={() => onSelectChart(item.chartIndex)}>
+          <div key={index} className="chart-item" onClick={() => onSelectChart(item.chartIndex, item.title)}>
             <div className="chart-info">
               <FontAwesomeIcon icon={item.statusIcon} className="status-icon" />
               <span className="last-activity">{item.lastActivity}</span>

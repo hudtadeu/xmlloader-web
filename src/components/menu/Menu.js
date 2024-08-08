@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faChevronRight, faChevronDown, faRightFromBracket, faAddressBook, faTasks, faMagnifyingGlass, faChartBar, faChartPie, faRepeat, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +6,7 @@ import './styleMenu.css';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState('Dashboard');
+  const [activeItem, setActiveItem] = useState('');
   const [submenuOpen, setSubmenuOpen] = useState('');
   const navigate = useNavigate();
 
@@ -28,7 +27,7 @@ const Menu = () => {
       setActiveItem(item);
       setSubmenuOpen('');
     }
-    navigate(path);
+    if (path) navigate(path);
   };
 
   return (
@@ -42,19 +41,15 @@ const Menu = () => {
           />
         </div>
         <ul id="side_items">
-          <li
-            className={`side-item ${activeItem === 'Dashboard' ? 'active' : ''}`}
-            onClick={() => handleMenuItemClick('Dashboard', '/dashboard')}
-          >
+          <li className={`side-item ${activeItem === 'Dashboard' ? 'active' : ''}`}
+              onClick={() => handleMenuItemClick('Dashboard', '/dashboard')}>
             <a href="#">
               <FontAwesomeIcon icon={faChartPie} className="menu-icon" />
               <span className="item-description">Monitor Xml Loader</span>
             </a>
           </li>
-          <li
-            className={`side-item ${activeItem === 'Cadastros' ? 'active' : ''}`}
-          >
-            <a href="#" onClick={() => handleMenuItemClick('Cadastros', '/cadastros')}>
+          <li className={`side-item ${activeItem === 'Cadastros' ? 'active' : ''}`}>
+            <a href="#" onClick={() => handleMenuItemClick('Cadastros')}>
               <FontAwesomeIcon icon={faAddressBook} className="menu-icon" />
               <span className="item-description">Cadastros</span>
               {isOpen && (
@@ -75,10 +70,8 @@ const Menu = () => {
               </ul>
             )}
           </li>
-          <li
-            className={`side-item ${activeItem === 'Rotinas' ? 'active' : ''}`}
-          >
-            <a href="#" onClick={() => handleMenuItemClick('Rotinas', '/rotinas')}>
+          <li className={`side-item ${activeItem === 'Rotinas' ? 'active' : ''}`}>
+            <a href="#" onClick={() => handleMenuItemClick('Rotinas')}>
               <FontAwesomeIcon icon={faRepeat} className="menu-icon" />
               <span className="item-description">Rotinas</span>
               {isOpen && (
@@ -99,10 +92,8 @@ const Menu = () => {
               </ul>
             )}
           </li>
-          <li
-            className={`side-item ${activeItem === 'Tarefas' ? 'active' : ''}`}
-          >
-            <a href="#" onClick={() => handleMenuItemClick('Tarefas', '/tarefas')}>
+          <li className={`side-item ${activeItem === 'Tarefas' ? 'active' : ''}`}>
+            <a href="#" onClick={() => handleMenuItemClick('Tarefas')}>
               <FontAwesomeIcon icon={faTasks} className="menu-icon" />
               <span className="item-description">Tarefas</span>
               {isOpen && (
@@ -123,10 +114,8 @@ const Menu = () => {
               </ul>
             )}
           </li>
-          <li
-            className={`side-item ${activeItem === 'Consultas' ? 'active' : ''}`}
-          >
-            <a href="#" onClick={() => handleMenuItemClick('Consultas', '/consultas')}>
+          <li className={`side-item ${activeItem === 'Consultas' ? 'active' : ''}`}>
+            <a href="#" onClick={() => handleMenuItemClick('Consultas')}>
               <FontAwesomeIcon icon={faMagnifyingGlass} className="menu-icon" />
               <span className="item-description">Consultas</span>
               {isOpen && (
@@ -147,10 +136,8 @@ const Menu = () => {
               </ul>
             )}
           </li>
-          <li
-            className={`side-item ${activeItem === 'Relatórios' ? 'active' : ''}`}
-          >
-            <a href="#" onClick={() => handleMenuItemClick('Relatórios', '/relatorios')}>
+          <li className={`side-item ${activeItem === 'Relatórios' ? 'active' : ''}`}>
+            <a href="#" onClick={() => handleMenuItemClick('Relatórios')}>
               <FontAwesomeIcon icon={faChartBar} className="menu-icon" />
               <span className="item-description">Relatórios</span>
               {isOpen && (
@@ -171,9 +158,7 @@ const Menu = () => {
               </ul>
             )}
           </li>
-          <li
-            className={`side-item ${activeItem === 'Configurações' ? 'active' : ''}`}
-          >
+          <li className={`side-item ${activeItem === 'Configurações' ? 'active' : ''}`}>
             <a href="#" onClick={() => handleMenuItemClick('Configurações', '/configuracoes')}>
               <FontAwesomeIcon icon={faGear} className="menu-icon" />
               <span className="item-description">Configurações</span>

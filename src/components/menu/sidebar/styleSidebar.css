@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -16,6 +16,7 @@
   flex-direction: column;
   border: 1px solid #ddd;
   overflow-y: auto;
+  max-height: 100vh; /* Ensures the sidebar doesn't exceed the viewport height */
 }
 
 .sidebar-header {
