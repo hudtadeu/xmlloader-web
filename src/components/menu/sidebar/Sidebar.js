@@ -70,7 +70,7 @@ const Sidebar = ({ onSelectChart }) => {
       chartIndex: 7
     },
     {
-      title: "Documentos corrigidos e não atualizados",
+      title: "Documentos Corrigidos e Não Atualizados",
       statusIcon: faCheckCircle,
       lastActivity: "Última atividade:",
       time: '5 MIN',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../sidebar/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -148,12 +148,21 @@ const data = [
     },
     title: "Documentos Atualizados no Dia"
   },
+  {
+    series: [80, 12, 20],
+    options: {
+      ...commonOptions,
+      labels: ['Nfe', 'CTe', 'NFSe'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Documentos Corrgidos e Não Atualizados"
+  },
 ];
 
 const Dashboard = () => {
-  const [dashboardTitle, setDashboardTitle] = useState('');
+  const [dashboardTitle, setDashboardTitle] = useState(data[0].title);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedChart, setSelectedChart] = useState(null);
+  const [selectedChart, setSelectedChart] = useState(0);
 
   const handleChartClick = (chartIndex, chartTitle) => {
     setDashboardTitle(chartTitle);
@@ -232,7 +241,7 @@ const Dashboard = () => {
           <div className="summary">
             <div className="summary-column">
               <div className="summary-section">
-                <h3>Total:</h3>
+                <h3>Valores:</h3>
                 <div className="summary-details">
                   {renderSummaryDetails()}
                 </div>
