@@ -30,12 +30,12 @@ body {
 .dashboard-title {
   font-size: 24px;
   font-weight: 600;
-  margin-left: 20px; 
+  margin-left: 10px; 
 }
 
 .title-line {
   width: 118%;
-  margin-left: 20px; 
+  margin-left: 10px; 
   height: 2px;
   margin-top: 8px;
   background-color: #0098c9;
@@ -49,7 +49,7 @@ body {
   margin-bottom: 20px;
   width: calc(100% - -150px); 
   height: 620px;
-  margin-left: 20px; 
+  margin-left: 10px; 
   margin-right: 20px; 
 }
 
