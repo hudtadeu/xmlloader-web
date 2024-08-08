@@ -1,15 +1,163 @@
 import React, { useState } from 'react';
-import Sidebar from '../sidebar/Sidebar'; 
+import Sidebar from '../sidebar/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Chart from 'react-apexcharts';
 import './styleDashboard.css';
+
+const commonOptions = {
+  chart: {
+    type: 'pie',
+    toolbar: {
+      show: false,
+    },
+    dropShadow: {
+      enabled: true,
+      top: 5,
+      left: 5,
+      blur: 5,
+      opacity: 0.2,
+    },
+  },
+  plotOptions: {
+    pie: {
+      dataLabels: {
+        offset: -5,
+        style: {
+          colors: ['#FFF']
+        },
+      },
+      donut: {
+        size: '73%',
+        labels: {
+          show: false,
+        },
+      },
+    },
+  },
+  labels: [],
+  responsive: [{
+    breakpoint: 480,
+    options: {
+      chart: {
+        width: 200,
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'center',
+      },
+    },
+  }],
+  legend: {
+    show: false,
+  },
+  grid: {
+    padding: {
+      bottom: 1,
+    },
+  },
+  fill: {
+    type: 'solid',
+  },
+  stroke: {
+    show: false,
+  },
+  dataLabels: {
+    enabled: true,
+    formatter: (val, opts) => {
+      return val.toFixed(1) + '%';
+    },
+    style: {
+      fontSize: '14px',
+      fontWeight: 'bold',
+      colors: ['#fff'],
+    },
+  },
+};
+
+const data = [
+  {
+    series: [70, 22, 28, 45],
+    options: {
+      ...commonOptions,
+      labels: ['Até 1 dia', 'Até 3 dias', 'Até 7 dias', 'Acima 7 dias'],
+      colors: ['#375a7f', '#00a65a', '#f39c12', '#dd4b39'],
+    },
+    title: "XML's Recebidos a (x Dias)"
+  },
+  {
+    series: [34, 23, 3],
+    options: {
+      ...commonOptions,
+      labels: ['Fiscal', 'Suprimentos', 'PCP'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Ocorrências por Área de Negócio"
+  },
+  {
+    series: [23, 16, 9, 9, 15, 9, 17],
+    options: {
+      ...commonOptions,
+      labels: ['Falta Pedido Compra', 'Aprovação', 'Diferença Valor', 'Diferença Quantidade', 'Conversao Un. Medida', 'Falta Ordem Produção', 'Cadastro ERP Datasul'],
+      colors: ['#375a7f', '#00a65a', '#f39c12', '#dd4b39', '#00c0ef', '#f39c12', '#8a8f98'],
+    },
+    title: "Auditoria"
+  },
+  {
+    series: [180, 120, 45],
+    options: {
+      ...commonOptions,
+      labels: ['Nfe', 'CTe', 'NFs'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Ocorrências por Tipo de Doctos Fiscais"
+  },
+  {
+    series: [66, 20, 10, 14, 3, 24],
+    options: {
+      ...commonOptions,
+      labels: ['Matéria Prima', 'Uso e Consumo', 'Aplicação Direta', 'Manutenção', 'Facility', 'Embalagens'],
+      colors: ['#375a7f', '#00a65a', '#f39c12', '#dd4b39', '#00c0ef', '#8a8f98'],
+    },
+    title: "Ocorrências por Linhas de Produtos"
+  },
+  {
+    series: [80, 35, 60],
+    options: {
+      ...commonOptions,
+      labels: ['Contagem', 'Betim', 'Curitiba'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Fluxo Doc. Fiscais por Estabelecimento"
+  },
+  {
+    series: [80, 12, 20],
+    options: {
+      ...commonOptions,
+      labels: ['Em Trânsito', 'Na Empresa', 'Dentro da Fábrica'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Controle Chegada na Empresa"
+  },
+  {
+    series: [80, 12, 20],
+    options: {
+      ...commonOptions,
+      labels: ['Nfe', 'CTe', 'NFSe'],
+      colors: ['#375a7f', '#00a65a', '#f39c12'],
+    },
+    title: "Documentos Atualizados no Dia"
+  },
+];
 
 const Dashboard = () => {
   const [dashboardTitle, setDashboardTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedChart, setSelectedChart] = useState(null);
 
   const handleChartClick = (chartIndex, chartTitle) => {
     setDashboardTitle(chartTitle);
+    setSelectedChart(chartIndex);
   };
 
   const openModal = () => {
@@ -18,6 +166,39 @@ const Dashboard = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const renderSummaryDetails = () => {
+    if (selectedChart !== null) {
+      const total = data[selectedChart].series.reduce((acc, val) => acc + val, 0);
+      return (
+        <>
+          <div className="summary-item">
+            <span>Total de Documentos:</span>
+            <span>{total}</span>
+          </div>
+          {data[selectedChart].series.map((value, index) => (
+            <div key={index} className="summary-item">
+              <span>{data[selectedChart].options.labels[index]}:</span>
+              <span>{value}</span>
+            </div>
+          ))}
+        </>
+      );
+    }
+    return null;
+  };
+
+  const renderLegendDetails = () => {
+    if (selectedChart !== null) {
+      return data[selectedChart].options.labels.map((label, index) => (
+        <div key={index} className="summary-item">
+          <span style={{ backgroundColor: data[selectedChart].options.colors[index], padding: '0 5px', marginRight: '5px' }}></span>
+          <span>{label}</span>
+        </div>
+      ));
+    }
+    return null;
   };
 
   return (
@@ -53,53 +234,29 @@ const Dashboard = () => {
               <div className="summary-section">
                 <h3>Total:</h3>
                 <div className="summary-details">
-                  <div className="summary-item">
-                    <span>Total de Notas:</span>
-                    <span>64</span>
-                  </div>
-                  <div className="summary-item">
-                    <span>Autorizadas:</span>
-                    <span>64</span>
-                  </div>
-                  <div className="summary-item">
-                    <span>Canceladas:</span>
-                    <span>0</span>
-                  </div>
+                  {renderSummaryDetails()}
                 </div>
               </div>
               <div className="summary-section">
                 <h3>Legenda:</h3>
                 <div className="summary-details">
-                  <div className="summary-item">
-                    <span>Total de Notas:</span>
-                    <span>0</span>
-                  </div>
-                  <div className="summary-item">
-                    <span>Autorizadas:</span>
-                    <span>0</span>
-                  </div>
-                  <div className="summary-item">
-                    <span>Não Autorizadas:</span>
-                    <span>0</span>
-                  </div>
-                  <div className="summary-item">
-                    <span>Canceladas:</span>
-                    <span>0</span>
-                  </div>
+                  {renderLegendDetails()}
                 </div>
               </div>
             </div>
-            <div className="summary-section division-notes">
-              <h3>Gráfico</h3>
-              <div className="chart-placeholder">
-                {/* Chart content here */}
+            {selectedChart !== null && (
+              <div className="summary-section division-notes">
+                <h3>Gráfico:</h3>
+                <div className="chart-placeholder">
+                  <Chart
+                    options={data[selectedChart].options}
+                    series={data[selectedChart].series}
+                    type="pie"
+                    width="100%"
+                  />
+                </div>
               </div>
-              <div className="note-summary">
-                <div className="note-item"></div>
-                <div className="note-item"></div>
-                <div className="note-item total"></div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
         <div className="content-placeholder">

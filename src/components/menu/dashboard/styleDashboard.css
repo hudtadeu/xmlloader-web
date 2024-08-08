@@ -141,6 +141,7 @@ body {
   height: 420px;
 }
 
+
 .summary-section h3 {
   font-size: 16px;
   font-weight: 500;
@@ -156,14 +157,13 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .chart-placeholder {
   height: 350px;
   background-color: #eaeaea;
   border-radius: 8px;
-  margin-top: 10px;
-  margin-bottom: -10px;
 }
 
 .note-summary {
