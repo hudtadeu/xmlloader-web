@@ -107,8 +107,6 @@ const Sidebar = ({ onSelectChart }) => {
           </div>
         ))}
       </div>
-      <div className="no-more-companies">
-      </div>
     </aside>
   );
 };
