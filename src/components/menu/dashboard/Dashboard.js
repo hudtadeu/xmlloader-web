@@ -155,7 +155,7 @@ const data = [
       labels: ['Nfe', 'CTe', 'NFSe'],
       colors: ['#375a7f', '#00a65a', '#f39c12'],
     },
-    title: "Documentos Corrgidos e Não Atualizados"
+    title: "Documentos Corrigidos e Não Atualizados"
   },
 ];
 
@@ -163,6 +163,7 @@ const Dashboard = () => {
   const [dashboardTitle, setDashboardTitle] = useState(data[0].title);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedChart, setSelectedChart] = useState(0);
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   const handleChartClick = (chartIndex, chartTitle) => {
     setDashboardTitle(chartTitle);
@@ -175,6 +176,11 @@ const Dashboard = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleSaveFilters = (filters) => {
+    setSelectedFilters(filters);
+    closeModal();
   };
 
   const renderSummaryDetails = () => {
@@ -210,6 +216,15 @@ const Dashboard = () => {
     return null;
   };
 
+  const renderSelectedFilters = () => {
+    return Object.entries(selectedFilters).map(([key, value], index) => (
+      <div key={index} className="summary-item">
+        <span>{key}:</span>
+        <span>{value}</span>
+      </div>
+    ));
+  };
+
   return (
     <div className="dashboard-container">
       <Sidebar onSelectChart={handleChartClick} />
@@ -222,21 +237,18 @@ const Dashboard = () => {
         )}
         <div className="account-summary-container">
           <div className="header">
-            <h2>Resumo dos Documentos</h2>
+            <h2>Documentos</h2>
             <div className="date-filter">
               <button className="filter-document-button" onClick={openModal}>
                 Filtrar Documento
               </button>
             </div>
           </div>
-          <div className="notification">
-            <button className="notification-button">CONSULTE NFES</button>
-            <p className="notification-message">
-              Sua conta pode ter novas NFEs. Consulte para atualizar suas informações <span>🤔</span>
-            </p>
-          </div>
           <div className="data-period">
-            <p>Dados referentes ao período de 1 a 27 de September</p>
+            <h3>Filtros Aplicados:</h3>
+            <div className="summary">
+              {renderSelectedFilters()}
+            </div>
           </div>
           <div className="summary">
             <div className="summary-column">
@@ -261,7 +273,8 @@ const Dashboard = () => {
                     options={data[selectedChart].options}
                     series={data[selectedChart].series}
                     type="pie"
-                    width="100%"
+                    height="400px"  // Aumente a altura do gráfico
+                    width="400px"
                   />
                 </div>
               </div>
@@ -284,7 +297,7 @@ const Dashboard = () => {
               <div className="filters">
                 <div className="filter">
                   <label>Estabelecimento:</label>
-                  <select>
+                  <select id="filter-estabelecimento">
                     <option value="estab1">Estabelecimento 1</option>
                     <option value="estab2">Estabelecimento 2</option>
                     <option value="estab3">Estabelecimento 3</option>
@@ -292,7 +305,7 @@ const Dashboard = () => {
                 </div>
                 <div className="filter">
                   <label>Tipo Documento Fiscal:</label>
-                  <select>
+                  <select id="filter-tipo-doc">
                     <option value="nfe">NFe</option>
                     <option value="nf3e">NF3e</option>
                     <option value="cte">CTe</option>
@@ -302,15 +315,15 @@ const Dashboard = () => {
                 </div>
                 <div className="filter">
                   <label>Código Fornecedor:</label>
-                  <input type="text" />
+                  <input type="text" id="filter-fornecedor" />
                 </div>
                 <div className="filter">
                   <label>Dias Pendentes:</label>
-                  <input type="number" />
+                  <input type="number" id="filter-dias-pendentes" />
                 </div>
                 <div className="filter">
                   <label>Localização:</label>
-                  <select>
+                  <select id="filter-localizacao">
                     <option value="local1">Localização 1</option>
                     <option value="local2">Localização 2</option>
                     <option value="local3">Localização 3</option>
@@ -318,7 +331,7 @@ const Dashboard = () => {
                 </div>
                 <div className="filter">
                   <label>Linha de Produtos:</label>
-                  <select>
+                  <select id="filter-linha-prod">
                     <option value="linha1">Linha 1</option>
                     <option value="linha2">Linha 2</option>
                     <option value="linha3">Linha 3</option>
@@ -326,7 +339,7 @@ const Dashboard = () => {
                 </div>
                 <div className="filter">
                   <label>Área de Negócio:</label>
-                  <select>
+                  <select id="filter-area-negocio">
                     <option value="suprimento">Suprimento</option>
                     <option value="fiscal">Fiscal</option>
                     <option value="pcp">PCP</option>
@@ -334,7 +347,20 @@ const Dashboard = () => {
                   </select>
                 </div>
               </div>
-              <button className="button-save">Salvar</button>
+              <button
+                className="button-save"
+                onClick={() => handleSaveFilters({
+                  'Estabelecimento': document.getElementById('filter-estabelecimento').value,
+                  'Tipo Documento Fiscal': document.getElementById('filter-tipo-doc').value,
+                  'Código Fornecedor': document.getElementById('filter-fornecedor').value,
+                  'Dias Pendentes': document.getElementById('filter-dias-pendentes').value,
+                  'Localização': document.getElementById('filter-localizacao').value,
+                  'Linha de Produtos': document.getElementById('filter-linha-prod').value,
+                  'Área de Negócio': document.getElementById('filter-area-negocio').value,
+                })}
+              >
+                Salvar
+              </button>
             </div>
           </div>
         </div>

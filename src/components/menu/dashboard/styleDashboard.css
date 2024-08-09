@@ -50,7 +50,7 @@ body {
   width: calc(100% - -150px); 
   height: 620px;
   margin-left: 10px; 
-  margin-right: 20px; 
+  margin-right: 80px; 
 }
 
 .header {
@@ -162,8 +162,12 @@ body {
 
 .chart-placeholder {
   height: 350px;
+  width: 100%;    /* O gráfico ocupa toda a largura */
   background-color: #eaeaea;
   border-radius: 8px;
+  display: flex;
+  align-items: center;  /* Centraliza verticalmente o gráfico */
+  justify-content: center;
 }
 
 .note-summary {
@@ -337,4 +341,49 @@ body {
 .button-save:hover {
   background-color: #0056b3;
 }
+
+.data-period {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.data-period h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.data-period {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  background-color: #eaeaea;
+  border-radius: 8px;
+}
+
+.data-period h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+
 
