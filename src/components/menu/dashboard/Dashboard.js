@@ -218,7 +218,7 @@ const Dashboard = () => {
 
   const renderSelectedFilters = () => {
     return Object.entries(selectedFilters).map(([key, value], index) => (
-      <div key={index} className="summary-item">
+      <div key={index} className="summary-filtros">
         <span>{key}:</span>
         <span>{value}</span>
       </div>
@@ -246,7 +246,7 @@ const Dashboard = () => {
           </div>
           <div className="data-period">
             <h3>Filtros Aplicados:</h3>
-            <div className="summary">
+            <div className="summary-fil">
               {renderSelectedFilters()}
             </div>
           </div>
@@ -273,16 +273,13 @@ const Dashboard = () => {
                     options={data[selectedChart].options}
                     series={data[selectedChart].series}
                     type="pie"
-                    height="400px"  // Aumente a altura do gráfico
+                    height="380px"  
                     width="400px"
                   />
                 </div>
               </div>
             )}
           </div>
-        </div>
-        <div className="content-placeholder">
-          {/* Centralized content here */}
         </div>
       </div>
 
