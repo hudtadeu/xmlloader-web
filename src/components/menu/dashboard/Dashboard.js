@@ -237,7 +237,7 @@ const Dashboard = () => {
         )}
         <div className="account-summary-container">
           <div className="header">
-            <h2>Documentos</h2>
+            <h2>Documentos:</h2>
             <div className="date-filter">
               <button className="filter-document-button" onClick={openModal}>
                 Filtrar Documento

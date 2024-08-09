@@ -48,6 +48,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 30px;
   margin-bottom: 20px;
+  margin-top: 25px;
   width: calc(100% - 30px);
   height: 620px;
   margin-left: 10px;
@@ -65,7 +66,8 @@ body {
 
 .header h2 {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
+  margin-top: -10px;
 }
 
 .header p {
@@ -119,6 +121,7 @@ body {
 .summary {
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .summary-column {
@@ -128,12 +131,21 @@ body {
 }
 
 .summary-section {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
   margin-bottom: 20px;
   height: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.summary-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
 
 .division-notes {
   flex: 1;
@@ -146,21 +158,27 @@ body {
 
 
 .summary-section h3 {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 3px;
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 7px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 1px;
 }
 
 .summary-details {
   display: flex;
   flex-direction: column;
+  gap: 1px;
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 410;
 }
 
 .chart-placeholder {
@@ -345,19 +363,11 @@ body {
   background-color: #0056b3;
 }
 
-
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-  font-size: 14px;
-}
-
 .data-period h3 {
   font-size: 13px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   padding: 5px;
 }
 
@@ -381,7 +391,7 @@ body {
   display: inline-block; 
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   margin-left: 3px;
   padding: 3px;
   font-size: 10px;
